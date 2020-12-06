@@ -1,3 +1,7 @@
+<main>
+	<slot></slot>
+</main>
+
 <style>
 	main {
 		text-align: center;
@@ -13,6 +17,3 @@
 	}
 </style>
 
-<main>
-	<!-- <slot></slot> -->
-</main>

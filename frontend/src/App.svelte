@@ -1,6 +1,13 @@
 <script>
+	import { onMount } from 'svelte';
 	import DefaultLayout from '@/layouts/DefaultLayout.svelte';
+	import { getUser } from '@/store/users';
 	export let name;
+
+	let result;
+	onMount(async () => {
+		result = await getUser();
+	});
 </script>
 
 <style>
@@ -13,6 +20,7 @@
 </style>
 
 <DefaultLayout>
+	{result}
 	<h1>Hello {name}!</h1>
 	<p>
 		Visit the

@@ -3,9 +3,11 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import cors from 'cors';
 // import indexRouter from './routes/index';
 // import usersRouter from './routes/users';
 import routes from './controller/routes';
+
 var app = express();
 
 // view engine setup
@@ -17,9 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use(cors());
+// route로 가기전에 cors 설정 해주어야 함.
 app.use('/', routes);
 
 // catch 404 and forward to error handler
