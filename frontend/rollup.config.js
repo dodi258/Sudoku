@@ -4,6 +4,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
+import alias from '@rollup/plugin-alias';
+import path from 'path';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -57,6 +59,11 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+
+		alias({
+			// @가 src 디렉토리를 가리킨다는 말.
+			entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }]
+		}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
